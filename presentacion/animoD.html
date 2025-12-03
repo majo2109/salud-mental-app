@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Panel - Mente Sana{% endblock %}
+
+{% block content %}
+<h1 class="title">Panel de seguimiento</h1>
+
+<div class="columns">
+  <div class="column is-5">
+    <div class="box">
+      <h2 class="subtitle">Nuevo registro</h2>
+      <form method="post" action="/registros">
+        <div class="field">
+          <label class="label">¿Cómo te sientes hoy?</label>
+          <div class="control">
+            <div class="select is-fullwidth">
+              <select name="estado_animo" required>
+                <option value="">Selecciona una opción</option>
+                <option>Muy bien</option>
+                <option>Bien</option>
+                <option>Neutral</option>
+                <option>Mal</option>
+                <option>Muy mal</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Comentario (opcional)</label>
+          <div class="control">
+            <textarea class="textarea" name="comentario"
+                      placeholder="¿Algo que quieras anotar?"></textarea>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="control">
+            <button class="button is-primary" type="submit">
+              Guardar registro
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="column is-7">
+    <div class="box">
+      <h2 class="subtitle">Historial reciente</h2>
+
+      <!-- Aquí luego iteras sobre registros desde el backend -->
+      <div class="content">
+        <p>No hay registros aún.</p>
+        <!-- Ejemplo cuando tengas datos:
+        {% for r in registros %}
+          <article class="message">
+            <div class="message-header">
+              <p>{{ r.fecha }} - {{ r.estado_animo }}</p>
+            </div>
+            <div class="message-body">
+              {{ r.comentario or "Sin comentario" }}
+            </div>
+          </article>
+        {% endfor %}
+        -->
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

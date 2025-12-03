@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Mente Sana{% endblock %}</title>
+
+    <!-- Bulma desde CDN -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+    <!-- Tu CSS extra -->
+    <link rel="stylesheet" href="/static/css/custom.css">
+</head>
+<body>
+<nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/">
+      🧠 Mente Sana
+    </a>
+  </div>
+
+  <div class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/">Inicio</a>
+      <a class="navbar-item" href="/dashboard">Panel</a>
+    </div>
+  </div>
+</nav>
+
+<section class="section">
+  <div class="container">
+    {% block content %}{% endblock %}
+  </div>
+</section>
+
+</body>
+</html>

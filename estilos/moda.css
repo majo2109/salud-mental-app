@@ -1,0 +1,103 @@
+body {
+    background-color: #f5f7fa;          
+    font-family: "Segoe UI", sans-serif;
+}
+
+.section .container, 
+.container {
+    max-width: 1000px;
+}
+
+.box {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border-radius: 10px;
+    padding: 25px;
+}
+
+
+.mb-5 {
+    margin-bottom: 2.5rem !important;
+}
+
+
+
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-item:hover {
+    background-color: rgba(255,255,255,0.2) !important;
+}
+
+
+
+input.input,
+textarea.textarea,
+.select select {
+    border-radius: 8px !important;
+    border: 1px solid #d0d4d8;
+}
+
+input.input:focus,
+textarea.textarea:focus,
+.select select:focus {
+    border-color: #485fc7 !important;     
+    box-shadow: 0 0 0 0.15em rgba(72, 95, 199, 0.25);
+}
+
+
+
+button.button, 
+a.button {
+    border-radius: 8px !important;
+    font-weight: 500;
+}
+
+
+.button.is-primary {
+    background-color: #485fc7 !important;
+    border-color: #485fc7 !important;
+}
+
+.button.is-primary:hover {
+    background-color: #3d50a5 !important;
+}
+
+.button.is-link {
+    background-color: #3e8ed0 !important;
+    border-color: #3e8ed0 !important;
+}
+
+.button.is-link:hover {
+    background-color: #357eb8 !important;
+}
+
+
+.message {
+    border-radius: 8px;
+}
+
+.message-header {
+    border-radius: 8px 8px 0 0;
+    background-color: #485fc7 !important;
+}
+
+.message-body {
+    background-color: #fff;
+}
+
+
+ul li {
+    margin-bottom: 6px;
+}
+
+
+@media(max-width: 768px) {
+    .box {
+        padding: 20px;
+    }
+
+    .navbar-menu {
+        text-align: center;
+    }
+}
