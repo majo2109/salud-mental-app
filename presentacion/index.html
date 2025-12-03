@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio · Juego Limpio Mental{% endblock %}
+
+{% block content %}
+<h1>Panel principal</h1>
+
+<p>
+    Esta aplicación permite registrar deportistas, entrenadores y evaluaciones
+    de salud mental/rendimiento para hacer seguimiento dentro de la universidad.
+</p>
+
+<section class="cards">
+    <div class="card">
+        <h2>Deportistas</h2>
+        <p>Gestiona el registro de los deportistas y su disciplina.</p>
+        <a class="btn" href="/web/deportistas">Ir a deportistas</a>
+    </div>
+
+    <div class="card">
+        <h2>Entrenadores</h2>
+        <p>Administra los entrenadores y su experiencia.</p>
+        <a class="btn" href="/web/entrenadores">Ir a entrenadores</a>
+    </div>
+
+    <div class="card">
+        <h2>Evaluaciones</h2>
+        <p>Registra el estado emocional y rendimiento de los deportistas.</p>
+        <a class="btn" href="/web/evaluaciones">Ir a evaluaciones</a>
+    </div>
+</section>
+{% endblock %}
