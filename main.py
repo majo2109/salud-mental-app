@@ -7,8 +7,9 @@ app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-# Plantillas HTML
+
 templates = Jinja2Templates(directory="templates")
+
 
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
@@ -16,6 +17,7 @@ async def home(request: Request):
         "index.html",
         {"request": request}
     )
+
 
 @app.post("/registros")
 async def crear_registro(
@@ -26,13 +28,14 @@ async def crear_registro(
 
     return RedirectResponse(url="/", status_code=303)
 
+
 @app.post("/feedback")
 async def feedback(
     request: Request,
     nombre_usuario: str = Form("Anónimo"),
     mensaje: str = Form("")
 ):
-
+    
     return RedirectResponse(url="/", status_code=303)
 
 @app.get("/login", response_class=HTMLResponse)
@@ -48,8 +51,9 @@ async def login_post(
     email: str = Form(...),
     password: str = Form(...)
 ):
-
-    return RedirectResponse(url="/dashboard", status_code=303)
+    response = RedirectResponse(url="/dashboard", status_code=303)
+    response.set_cookie(key="user_id", value="1")
+    return response
 
 @app.get("/registro", response_class=HTMLResponse)
 async def registro_get(request: Request):
@@ -69,15 +73,9 @@ async def registro_post(
 
 @app.get("/dashboard", response_class=HTMLResponse)
 async def dashboard(request: Request):
-    
-    registros = []  
-
+    registros = []  # Por ahora vacío
     return templates.TemplateResponse(
         "dashboard.html",
-        {
-            "request": request,
-            "registros": registros
-        }
+        {"request": request, "registros": registros}
     )
-
 
