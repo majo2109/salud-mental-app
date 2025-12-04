@@ -28,16 +28,7 @@ def lista_deportistas(request: Request, session: Session = Depends(get_session))
 # ============================================================
 # LISTAR DEPORTISTAS INACTIVOS
 # ============================================================
-@router.get("/deportistas/inactivos", response_class=HTMLResponse)
-def lista_deportistas_inactivos(request: Request, session: Session = Depends(get_session)):
-    deportistas = session.exec(
-        select(Deportista).where(Deportista.estado == False)
-    ).all()
 
-    return templates.TemplateResponse(
-        "deportistas_inactivos.html",
-        {"request": request, "deportistas": deportistas},
-    )
 
 
 
