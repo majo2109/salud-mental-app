@@ -1,29 +1,122 @@
+{% extends "base.html" %}
+{% block title %}Nueva Evaluación{% endblock %}
+
+{% block content %}
+
+<h1 class="title">Registrar Evaluación de Bienestar</h1>
+<p class="subtitle">
+  Registra cómo se sintió el deportista y cómo percibió el entrenamiento de hoy.
+</p>
+
 <form method="post" action="/evaluaciones/nueva" class="box">
-  <input class="input" type="date" name="fecha" required>
 
-  <textarea class="textarea" name="como_se_sintio" required></textarea>
-  <textarea class="textarea" name="como_estuvo_entrenamiento" required></textarea>
-
-  <input class="input" type="number" name="nivel_1_10" min="1" max="10" required>
-
-  <textarea class="textarea" name="comentarios_extra"></textarea>
-
-  <div class="select">
-    <select name="deportista_id" required>
-      {% for d in deportistas %}
-        <option value="{{ d.id }}">{{ d.nombre }}</option>
-      {% endfor %}
-    </select>
+  <!-- Fecha -->
+  <div class="field">
+    <label class="label">Fecha</label>
+    <div class="control">
+      <input
+        class="input"
+        type="date"
+        name="fecha"
+        required
+      >
+    </div>
   </div>
 
-  <div class="select">
-    <select name="entrenador_id" required>
-      {% for e in entrenadores %}
-        <option value="{{ e.id }}">{{ e.nombre }}</option>
-      {% endfor %}
-    </select>
+  <!-- Cómo se sintió hoy -->
+  <div class="field">
+    <label class="label">¿Cómo se sintió hoy?</label>
+    <div class="control">
+      <textarea
+        class="textarea"
+        name="como_se_sintio"
+        placeholder="Describe brevemente cómo se sintió el deportista (ánimo, energía, estrés, etc.)"
+        required
+      ></textarea>
+    </div>
   </div>
 
-  <button class="button is-primary">Guardar evaluación</button>
+  <!-- Cómo estuvo el entrenamiento -->
+  <div class="field">
+    <label class="label">¿Qué tal estuvo el entrenamiento hoy?</label>
+    <div class="control">
+      <textarea
+        class="textarea"
+        name="como_estuvo_entrenamiento"
+        placeholder="Comenta sobre la intensidad, carga, dificultad, ambiente del entrenamiento..."
+        required
+      ></textarea>
+    </div>
+  </div>
+
+  <!-- Nivel 1 a 10 -->
+  <div class="field">
+    <label class="label">Del 1 al 10, ¿cómo se siente hoy?</label>
+    <div class="control">
+      <input
+        class="input"
+        type="number"
+        name="nivel_1_10"
+        min="1"
+        max="10"
+        placeholder="1 = muy mal, 10 = excelente"
+        required
+      >
+    </div>
+  </div>
+
+  <!-- Comentarios extra -->
+  <div class="field">
+    <label class="label">Comentarios adicionales</label>
+    <div class="control">
+      <textarea
+        class="textarea"
+        name="comentarios_extra"
+        placeholder="Espacio para observaciones adicionales sobre el estado físico o emocional."
+      ></textarea>
+    </div>
+  </div>
+
+  <!-- Selección de deportista -->
+  <div class="field">
+    <label class="label">Deportista</label>
+    <div class="control">
+      <div class="select is-fullwidth">
+        <select name="deportista_id" required>
+          <option value="" disabled selected>Selecciona un deportista</option>
+          {% for d in deportistas %}
+            <option value="{{ d.id }}">{{ d.nombre }} ({{ d.disciplina }})</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Selección de entrenador -->
+  <div class="field">
+    <label class="label">Entrenador</label>
+    <div class="control">
+      <div class="select is-fullwidth">
+        <select name="entrenador_id" required>
+          <option value="" disabled selected>Selecciona un entrenador</option>
+          {% for e in entrenadores %}
+            <option value="{{ e.id }}">{{ e.nombre }} ({{ e.especialidad }})</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botones -->
+  <div class="field mt-4">
+    <div class="control">
+      <button class="button is-primary">Guardar evaluación</button>
+      <a href="/evaluaciones" class="button is-light">Cancelar</a>
+    </div>
+  </div>
+
 </form>
+
+{% endblock %}
+
 
