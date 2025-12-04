@@ -3,77 +3,50 @@
 
 {% block content %}
 
-<div class="landing-container">
+<div class="landing-hero">
 
-    <!-- Cabecera de texto -->
-    <div class="landing-header">
-        <div class="landing-header-kicker">Sistema de bienestar deportivo</div>
-        <h1 class="landing-title">Bienestar Deportivo</h1>
-        <p class="landing-subtitle">
-            Gestiona deportistas, entrenadores y evaluaciones emocionales de forma sencilla,
-            y recibe sugerencias para seguir mejorando la experiencia.
+    <!-- Texto principal -->
+    <div class="landing-left">
+        <h1 class="hero-title">
+            Bienestar Deportivo
+        </h1>
+
+        <p class="hero-subtitle">
+            Gestiona deportistas, entrenadores y evaluaciones emocionales con una plataforma profesional, intuitiva y enfocada en el rendimiento humano.
         </p>
-    </div>
-
-    <!-- Contenido principal: botones + formulario -->
-    <div class="landing-main">
 
         <!-- Botones de navegación -->
-        <div>
-            <div class="landing-buttons">
-                <a href="/deportistas"  class="landing-btn">Ver Deportistas</a>
-                <a href="/entrenadores" class="landing-btn">Ver Entrenadores</a>
-                <a href="/evaluaciones" class="landing-btn">Ver Evaluaciones</a>
-                <a href="/dashboard"    class="landing-btn landing-btn-primary">
-                    Ver Dashboard
-                </a>
-            </div>
+        <div class="hero-buttons">
+            <a href="/deportistas" class="hero-btn">Deportistas</a>
+            <a href="/entrenadores" class="hero-btn">Entrenadores</a>
+            <a href="/evaluaciones" class="hero-btn">Evaluaciones</a>
+            <a href="/dashboard" class="hero-btn hero-btn-primary">
+                Dashboard
+            </a>
         </div>
-
-        <!-- Formulario de recomendaciones -->
-        <div class="reco-card">
-            <h2 class="reco-title">¿Alguna recomendación?</h2>
-            <p class="reco-subtitle">
-                Cuéntanos cómo podríamos mejorar el seguimiento del bienestar deportivo.
-            </p>
-
-            <!--
-              IMPORTANTE:
-              Si todavía no tienes el endpoint /recomendaciones,
-              puedes dejar action="#" para que el formulario sea solo visual.
-            -->
-            <form method="post" action="/recomendaciones">
-                <div class="reco-field">
-                    <label class="reco-label" for="nombre">Nombre (opcional)</label>
-                    <input
-                        id="nombre"
-                        name="nombre"
-                        type="text"
-                        class="reco-input"
-                        placeholder="Tu nombre o seudónimo"
-                    >
-                </div>
-
-                <div class="reco-field">
-                    <label class="reco-label" for="mensaje">Recomendación</label>
-                    <textarea
-                        id="mensaje"
-                        name="mensaje"
-                        class="reco-textarea"
-                        placeholder="Ej: agregar más gráficos, registrar dolor muscular, mejorar el diseño, etc."
-                        required
-                    ></textarea>
-                </div>
-
-                <button type="submit" class="reco-submit">
-                    Enviar recomendación
-                </button>
-            </form>
-        </div>
-
     </div>
+
+    <!-- Formulario de sugerencias -->
+    <div class="hero-form-card">
+        <h2 class="form-title">¿Tienes una recomendación?</h2>
+        <p class="form-subtitle">Ayúdanos a mejorar la plataforma y la experiencia del usuario.</p>
+
+        <form method="post" action="/recomendaciones">
+            <div class="form-field">
+                <label class="form-label">Nombre (opcional)</label>
+                <input type="text" name="nombre" class="form-input" placeholder="Escribe tu nombre">
+            </div>
+
+            <div class="form-field">
+                <label class="form-label">Recomendación</label>
+                <textarea name="mensaje" class="form-textarea" placeholder="¿Qué mejorarías?" required></textarea>
+            </div>
+
+            <button type="submit" class="form-submit">Enviar sugerencia</button>
+        </form>
+    </div>
+
 </div>
 
 {% endblock %}
-
 
