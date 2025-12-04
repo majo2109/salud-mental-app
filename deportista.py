@@ -1,32 +1,46 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Request, Depends, Form, HTTPException
+from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.templating import Jinja2Templates
 from sqlmodel import Session, select
-from models import Deportista
+
 from db import get_session
+from models import Deportista
 
-router = APIRouter(prefix="/api/deportistas", tags=["API Deportistas"])
-
-
-# Crear deportista vía API
-@router.post("/")
-def crear_deportista(deportista: Deportista, session: Session = Depends(get_session)):
-    session.add(deportista)
-    session.commit()
-    session.refresh(deportista)
-    return deportista
+router = APIRouter()
+templates = Jinja2Templates(directory="templates")
 
 
-# Listar todos (API)
-@router.get("/")
-def listar_deportistas(session: Session = Depends(get_session)):
-    query = select(Deportista).where(Deportista.estado == True)
-    return session.exec(query).all()
+# ============================================================
+# LISTAR DEPORTISTAS ACTIVOS
+# ============================================================
+@router.get("/deportistas", response_class=HTMLResponse)
+def lista_deportistas(request: Request, session: Session = Depends(get_session)):
+    deportistas = session.exec(
+        select(Deportista).where(Deportista.estado == True)
+    ).all()
+
+    return templates.TemplateResponse(
+        "deportistas.html",
+        {"request": request, "deportistas": deportistas},
+    )
 
 
-# Obtener por ID (API)
-@router.get("/{deportista_id}")
-def obtener_deportista(deportista_id: int, session: Session = Depends(get_session)):
-    deportista = session.get(Deportista, deportista_id)
-    if not deportista or deportista.estado is False:
-        raise HTTPException(status_code=404, detail="Deportista no encontrado")
-    return deportista
+# ============================================================
+# LISTAR DEPORTISTAS INACTIVOS
+# ============================================================
+@router.get("/deportistas/inactivos", response_class=HTMLResponse)
+def lista_deportistas_inactivos(request: Request, session: Session = Depends(get_session)):
+    deportistas = session.exec(
+        select(Deportista).where(Deportista.estado == False)
+    ).all()
+
+    return templates.TemplateResponse(
+        "deportistas_inactivos.html",
+        {"request": request, "deportistas": deportistas},
+    )
+
+
+# ============================================================
+# FORMULARIO PARA CREAR DEPORTISTA
+# ============================================================
 
