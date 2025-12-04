@@ -206,3 +206,133 @@ footer {
     color: #6b7a99;
     font-size: 14px;
 }
+/* ==========================
+   ESTILOS ESPECÍFICOS PARA LA PÁGINA DE INICIO
+   ========================== */
+
+.landing-hero {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: stretch;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+/* Columna izquierda: texto principal */
+.landing-left {
+    flex: 1 1 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.5rem 1rem;
+}
+
+.hero-title {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: #1b3c74;
+    margin-bottom: 0.75rem;
+}
+
+.hero-subtitle {
+    font-size: 1.05rem;
+    color: #4a5568;
+    max-width: 540px;
+}
+
+/* Tarjeta del formulario de sugerencias */
+.hero-form-card {
+    flex: 0 1 380px;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1.5rem 1.8rem 1.9rem;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    border: 1px solid #d9e4ff;
+}
+
+.form-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #1b3c74;
+    margin-bottom: 0.35rem;
+}
+
+.form-subtitle {
+    font-size: 0.95rem;
+    color: #64748b;
+    margin-bottom: 1.1rem;
+}
+
+/* Campos del formulario */
+.form-field {
+    margin-bottom: 0.9rem;
+}
+
+.form-label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #334155;
+    margin-bottom: 0.25rem;
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 0.7rem 0.8rem;
+    border-radius: 8px;
+    border: 1.8px solid #cbd5f5;
+    font-size: 0.95rem;
+    background: #f9fbff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.form-textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: #4a90e2;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.15);
+}
+
+/* Botón de enviar */
+.form-submit {
+    margin-top: 0.6rem;
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    font-size: 0.98rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: #4a90e2;
+    color: #ffffff;
+    transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+.form-submit:hover {
+    background: #3579c9;
+    box-shadow: 0 4px 10px rgba(53, 121, 201, 0.4);
+    transform: translateY(-1px);
+}
+
+/* Responsive: apilar columnas en pantallas pequeñas */
+@media (max-width: 768px) {
+    .landing-hero {
+        flex-direction: column;
+    }
+
+    .landing-left {
+        padding: 0.5rem 0;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+}
