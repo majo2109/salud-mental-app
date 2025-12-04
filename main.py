@@ -5,7 +5,7 @@ from db import init_db
 from deportista import router as deportista_router
 from entrenador import router as entrenador_router
 from evaluacion import router as evaluacion_router
-from routes.web import router as web_router  
+from routes.web import router as web_router   # 👈 ESTE
 
 app = FastAPI(
     title="Sistema de Bienestar Deportivo",
@@ -13,7 +13,7 @@ app = FastAPI(
     version="1.0.0",
 )
 
-# Archivos estáticos (CSS, imágenes, etc)
+
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
@@ -21,14 +21,12 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 def startup():
     init_db()
 
-
-# Rutas API (JSON, /api/...)
+# API REST
 app.include_router(deportista_router)
 app.include_router(entrenador_router)
 app.include_router(evaluacion_router)
 
-# Rutas WEB (HTML)
+# WEB (HTML)
 app.include_router(web_router)
-
 
 
