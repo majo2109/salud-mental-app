@@ -7,12 +7,14 @@ from entrenador import router as entrenador_router
 from evaluacion import router as evaluacion_router
 from routes.web import router as web_router   # 👈 ESTE
 
+
 app = FastAPI(
     title="Sistema de Bienestar Deportivo",
     description="Gestión de deportistas, entrenadores y evaluaciones emocionales.",
     version="1.0.0",
 )
 
+app.include_router(web_router)
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
