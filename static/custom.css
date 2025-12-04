@@ -136,3 +136,10 @@ body {
 .mb-4 {
     margin-bottom: 1.5rem;
 }
+
+.rounded-hero {
+    border-radius: 12px;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.12);
+}

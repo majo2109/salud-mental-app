@@ -35,3 +35,9 @@ class Evaluacion(SQLModel, table=True):
 
     deportista: Deportista = Relationship(back_populates="evaluaciones")
     entrenador: Entrenador = Relationship(back_populates="evaluaciones")
+
+class Feedback(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    nombre: str
+    correo: Optional[str] = None
+    mensaje: str

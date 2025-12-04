@@ -2,7 +2,75 @@
 {% block title %}Bienestar Deportivo{% endblock %}
 
 {% block content %}
-<h1 class="title">Bienestar Deportivo</h1>
-<p>Gestiona deportistas, entrenadores y evaluaciones emocionales.</p>
+
+<section class="hero is-light is-medium rounded-hero">
+  <div class="hero-body">
+    <div class="columns">
+      <div class="column is-half">
+        <h1 class="title">Bienestar Deportivo</h1>
+        <p class="subtitle">
+          Plataforma para gestionar deportistas, entrenadores y evaluaciones emocionales.
+        </p>
+        <p>
+          Tu opinión nos ayuda a mejorar la experiencia. Déjanos tus comentarios sobre
+          la página web.
+        </p>
+      </div>
+      <div class="column is-half">
+        <div class="box">
+          <h2 class="title is-5">¿Cómo podemos mejorar esta página?</h2>
+
+          <form method="post" action="/feedback">
+            <div class="field">
+              <label class="label">Nombre (opcional)</label>
+              <div class="control">
+                <input class="input" type="text" name="nombre" placeholder="Tu nombre">
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Correo (opcional)</label>
+              <div class="control">
+                <input class="input" type="email" name="correo" placeholder="tucorreo@ejemplo.com">
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Comentarios</label>
+              <div class="control">
+                <textarea class="textarea" name="mensaje" placeholder="Cuéntanos qué mejorarías, qué te gustó, qué falta..." required></textarea>
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="control">
+                <button class="button is-primary">Enviar comentario</button>
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section">
+  <div class="columns">
+    <div class="column">
+      <div class="box">
+        <p class="title is-5">Navegación rápida</p>
+        <ul>
+          <li><a href="/deportistas">Ver deportistas</a></li>
+          <li><a href="/entrenadores">Ver entrenadores</a></li>
+          <li><a href="/evaluaciones">Ver evaluaciones</a></li>
+          <li><a href="/dashboard">Dashboard general</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock %}
+
 

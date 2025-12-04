@@ -4,24 +4,20 @@ from fastapi.templating import Jinja2Templates
 from sqlmodel import Session, select
 
 from db import get_session
-from models import Deportista, Entrenador, Evaluacion
+from models import Deportista, Entrenador, Evaluacion, Feedback
+
 
 router = APIRouter(tags=["Web"])
 templates = Jinja2Templates(directory="templates")
 
 
-# ============================
-# HOME
-# ============================
 
 @router.get("/", response_class=HTMLResponse)
 def home(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
 
-# ============================
-# DASHBOARD
-# ============================
+
 
 @router.get("/dashboard", response_class=HTMLResponse)
 def dashboard(request: Request, session: Session = Depends(get_session)):
@@ -47,9 +43,7 @@ def dashboard(request: Request, session: Session = Depends(get_session)):
     )
 
 
-# ============================
-# DEPORTISTAS (solo vista lista y creación)
-# ============================
+
 
 @router.get("/deportistas", response_class=HTMLResponse)
 def listar_deportistas(request: Request, session: Session = Depends(get_session)):
@@ -79,10 +73,6 @@ def crear_deportista_post(
     session.commit()
     return RedirectResponse(url="/deportistas", status_code=303)
 
-
-# ============================
-# ENTRENADORES
-# ============================
 
 @router.get("/entrenadores", response_class=HTMLResponse)
 def listar_entrenadores(request: Request, session: Session = Depends(get_session)):
@@ -114,9 +104,7 @@ def crear_entrenador_post(
     return RedirectResponse(url="/entrenadores", status_code=303)
 
 
-# ============================
-# EVALUACIONES
-# ============================
+
 
 @router.get("/evaluaciones", response_class=HTMLResponse)
 def listar_evaluaciones(request: Request, session: Session = Depends(get_session)):
@@ -138,18 +126,22 @@ def form_evaluacion(request: Request):
 @router.post("/evaluaciones/nueva")
 def crear_evaluacion_post(
     fecha: str = Form(...),
-    estado_emocional: str = Form(...),
-    rendimiento: str = Form(...),
-    comentarios: str = Form(""),
+    como_se_sintio: str = Form(...),          # "¿Cómo se sintió hoy?"
+    como_estuvo_entrenamiento: str = Form(...),  # "¿Qué tal estuvo el entrenamiento hoy?"
+    nivel_1_10: int = Form(...),              # "Del 1 al 10, ¿cómo se siente?"
+    comentarios_extra: str = Form(""),
     deportista_id: int = Form(...),
     entrenador_id: int = Form(...),
     session: Session = Depends(get_session),
 ):
+   
+    texto_comentarios = f"Nivel de bienestar: {nivel_1_10}/10. {comentarios_extra}".strip()
+
     nueva = Evaluacion(
         fecha=fecha,
-        estado_emocional=estado_emocional,
-        rendimiento=rendimiento,
-        comentarios=comentarios,
+        estado_emocional=como_se_sintio,
+        rendimiento=como_estuvo_entrenamiento,
+        comentarios=texto_comentarios,
         deportista_id=deportista_id,
         entrenador_id=entrenador_id,
     )
@@ -157,3 +149,23 @@ def crear_evaluacion_post(
     session.add(nueva)
     session.commit()
     return RedirectResponse(url="/evaluaciones", status_code=303)
+
+
+
+
+@router.post("/feedback")
+def enviar_feedback(
+    nombre: str = Form("Anónimo"),
+    correo: str = Form(""),
+    mensaje: str = Form(...),
+    session: Session = Depends(get_session),
+):
+    fb = Feedback(
+        nombre=nombre if nombre.strip() else "Anónimo",
+        correo=correo if correo.strip() else None,
+        mensaje=mensaje,
+    )
+    session.add(fb)
+    session.commit()
+   
+    return RedirectResponse(url="/", status_code=303)
