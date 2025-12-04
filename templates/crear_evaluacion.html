@@ -1,44 +1,29 @@
-{% extends "base.html" %}
-{% block title %}Nueva Evaluación{% endblock %}
+<form method="post" action="/evaluaciones/nueva" class="box">
+  <input class="input" type="date" name="fecha" required>
 
-{% block content %}
+  <textarea class="textarea" name="como_se_sintio" required></textarea>
+  <textarea class="textarea" name="como_estuvo_entrenamiento" required></textarea>
 
-<h1 class="title">Registrar Evaluación</h1>
+  <input class="input" type="number" name="nivel_1_10" min="1" max="10" required>
 
-<form method="post" class="box">
+  <textarea class="textarea" name="comentarios_extra"></textarea>
 
-    <div class="field">
-        <label class="label">Fecha</label>
-        <input class="input" type="date" name="fecha" required>
-    </div>
+  <div class="select">
+    <select name="deportista_id" required>
+      {% for d in deportistas %}
+        <option value="{{ d.id }}">{{ d.nombre }}</option>
+      {% endfor %}
+    </select>
+  </div>
 
-    <div class="field">
-        <label class="label">Estado emocional</label>
-        <input class="input" type="text" name="estado_emocional" required>
-    </div>
+  <div class="select">
+    <select name="entrenador_id" required>
+      {% for e in entrenadores %}
+        <option value="{{ e.id }}">{{ e.nombre }}</option>
+      {% endfor %}
+    </select>
+  </div>
 
-    <div class="field">
-        <label class="label">Rendimiento</label>
-        <input class="input" type="text" name="rendimiento" required>
-    </div>
-
-    <div class="field">
-        <label class="label">Comentarios</label>
-        <textarea class="textarea" name="comentarios"></textarea>
-    </div>
-
-    <div class="field">
-        <label class="label">ID Deportista</label>
-        <input class="input" type="number" name="deportista_id" required>
-    </div>
-
-    <div class="field">
-        <label class="label">ID Entrenador</label>
-        <input class="input" type="number" name="entrenador_id" required>
-    </div>
-
-    <button class="button is-success">Guardar Evaluación</button>
-
+  <button class="button is-primary">Guardar evaluación</button>
 </form>
 
-{% endblock %}
