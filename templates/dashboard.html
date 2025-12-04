@@ -1,10 +1,10 @@
 {% extends "base.html" %}
-{% block title %}Dashboard{% endblock %}
+{% block title %}Panel de Bienestar{% endblock %}
 
 {% block content %}
 
-<h1 class="title">Dashboard general</h1>
-<p class="subtitle">Resumen básico del sistema de bienestar deportivo.</p>
+<h1 class="title">Panel de Bienestar Deportivo</h1>
+<p class="subtitle">Resumen general del sistema.</p>
 
 <div class="columns">
 
@@ -12,6 +12,7 @@
     <div class="box has-text-centered">
       <p class="heading">Deportistas activos</p>
       <p class="title">{{ total_deportistas }}</p>
+      <a href="/deportistas" class="button is-small is-link is-light">Ver lista</a>
     </div>
   </div>
 
@@ -19,6 +20,7 @@
     <div class="box has-text-centered">
       <p class="heading">Entrenadores activos</p>
       <p class="title">{{ total_entrenadores }}</p>
+      <a href="/entrenadores" class="button is-small is-link is-light">Ver lista</a>
     </div>
   </div>
 
@@ -26,42 +28,23 @@
     <div class="box has-text-centered">
       <p class="heading">Evaluaciones registradas</p>
       <p class="title">{{ total_evaluaciones }}</p>
+      <a href="/evaluaciones" class="button is-small is-link is-light">Ver evaluaciones</a>
     </div>
   </div>
 
 </div>
 
-<hr>
-
-<h2 class="title is-4">Últimas evaluaciones</h2>
-
-{% if ultimas_evaluaciones and ultimas_evaluaciones|length > 0 %}
-<table class="table is-fullwidth is-striped">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Fecha</th>
-      <th>Deportista ID</th>
-      <th>Entrenador ID</th>
-      <th>Estado emocional</th>
-      <th>Rendimiento</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for ev in ultimas_evaluaciones %}
-    <tr>
-      <td>{{ ev.id }}</td>
-      <td>{{ ev.fecha }}</td>
-      <td>{{ ev.deportista_id }}</td>
-      <td>{{ ev.entrenador_id }}</td>
-      <td>{{ ev.estado_emocional }}</td>
-      <td>{{ ev.rendimiento }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+{% if ultima_eval %}
+<div class="box">
+  <h2 class="title is-5">Última evaluación registrada</h2>
+  <p><strong>Fecha:</strong> {{ ultima_eval.fecha }}</p>
+  <p><strong>Estado emocional:</strong> {{ ultima_eval.estado_emocional }}</p>
+  <p><strong>Rendimiento:</strong> {{ ultima_eval.rendimiento }}</p>
+  <p><strong>Comentarios:</strong> {{ ultima_eval.comentarios }}</p>
+</div>
 {% else %}
-<p>No hay evaluaciones registradas todavía.</p>
+<p>Aún no hay evaluaciones registradas.</p>
 {% endif %}
 
 {% endblock %}
+
