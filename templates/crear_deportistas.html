@@ -2,25 +2,40 @@
 {% block title %}Nuevo Deportista{% endblock %}
 
 {% block content %}
-<h1 class="title">Registrar Deportista</h1>
 
-<form method="post" class="box">
-    <div class="field">
-        <label class="label">Nombre</label>
-        <input class="input" type="text" name="nombre">
+<h1 class="title">Registrar deportista</h1>
+<p class="subtitle">Completa la información básica del deportista.</p>
+
+<form method="post" action="/deportistas/nuevo" class="box">
+
+  <div class="field">
+    <label class="label">Nombre</label>
+    <div class="control">
+      <input class="input" type="text" name="nombre" placeholder="Nombre completo" required>
     </div>
+  </div>
 
-    <div class="field">
-        <label class="label">Edad</label>
-        <input class="input" type="number" name="edad">
+  <div class="field">
+    <label class="label">Edad</label>
+    <div class="control">
+      <input class="input" type="number" name="edad" min="0" placeholder="Edad" required>
     </div>
+  </div>
 
-    <div class="field">
-        <label class="label">Disciplina</label>
-        <input class="input" type="text" name="disciplina">
+  <div class="field">
+    <label class="label">Disciplina</label>
+    <div class="control">
+      <input class="input" type="text" name="disciplina" placeholder="Ej: fútbol, natación..." required>
     </div>
+  </div>
 
-    <button class="button is-success">Guardar</button>
+  <div class="field">
+    <div class="control">
+      <button class="button is-primary">Guardar deportista</button>
+    </div>
+  </div>
+
 </form>
 
 {% endblock %}
+
