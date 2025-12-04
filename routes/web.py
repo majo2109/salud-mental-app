@@ -145,3 +145,73 @@ def crear_evaluacion_web(
     session.add(nueva)
     session.commit()
     return RedirectResponse(url="/evaluaciones", status_code=303)
+
+# ============================
+# DASHBOARD GENERAL
+# ============================
+
+@router.get("/dashboard", response_class=HTMLResponse)
+def dashboard(request: Request, session: Session = Depends(get_session)):
+    deportistas = session.exec(
+        select(Deportista).where(Deportista.estado == True)
+    ).all()
+    entrenadores = session.exec(
+        select(Entrenador).where(Entrenador.estado == True)
+    ).all()
+    evaluaciones = session.exec(
+        select(Evaluacion).where(Evaluacion.estado == True)
+    ).all()
+
+    total_deportistas = len(deportistas)
+    total_entrenadores = len(entrenadores)
+    total_evaluaciones = len(evaluaciones)
+    ultima_eval = evaluaciones[-1] if evaluaciones else None
+
+    return templates.TemplateResponse(
+        "dashboard.html",
+        {
+            "request": request,
+            "total_deportistas": total_deportistas,
+            "total_entrenadores": total_entrenadores,
+            "total_evaluaciones": total_evaluaciones,
+            "ultima_eval": ultima_eval,
+        },
+    )
+
+
+# ============================
+# DASHBOARD DEPORTISTAS
+# ============================
+
+@router.get("/dashboard/deportistas", response_class=HTMLResponse)
+def dashboard_deportistas(request: Request, session: Session = Depends(get_session)):
+    deportistas = session.exec(
+        select(Deportista).where(Deportista.estado == True)
+    ).all()
+
+    return templates.TemplateResponse(
+        "dashboard_deportistas.html",
+        {
+            "request": request,
+            "deportistas": deportistas,
+        },
+    )
+
+
+# ============================
+# DASHBOARD ENTRENADORES
+# ============================
+
+@router.get("/dashboard/entrenadores", response_class=HTMLResponse)
+def dashboard_entrenadores(request: Request, session: Session = Depends(get_session)):
+    entrenadores = session.exec(
+        select(Entrenador).where(Entrenador.estado == True)
+    ).all()
+
+    return templates.TemplateResponse(
+        "dashboard_entrenadores.html",
+        {
+            "request": request,
+            "entrenadores": entrenadores,
+        },
+    )
