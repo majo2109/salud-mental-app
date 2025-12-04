@@ -1,15 +1,28 @@
 from fastapi import APIRouter, Request, Depends, Form
 from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.templating import Jinja2Templates
 from sqlmodel import Session, select
 
-from models import Deportista, Entrenador, Evaluacion
 from db import get_session
-from main import templates
+from models import Deportista, Entrenador, Evaluacion  # y Feedback si lo usas
 
 router = APIRouter()
 
+# AQUÍ creamos el objeto templates, SIN importar main
+templates = Jinja2Templates(directory="templates")
 
-# LISTAR DEPORTISTAS (HTML)
+
+# ============================
+# HOME
+# ============================
+@router.get("/", response_class=HTMLResponse)
+def home(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
+
+
+# (aquí van tus demás rutas web: dashboard, deportistas, entrenadores, evaluaciones, etc.)
+# Ejemplo deportistas:
+
 @router.get("/deportistas", response_class=HTMLResponse)
 def lista_deportistas(request: Request, session: Session = Depends(get_session)):
     deportistas = session.exec(
@@ -20,17 +33,10 @@ def lista_deportistas(request: Request, session: Session = Depends(get_session))
         {"request": request, "deportistas": deportistas},
     )
 
-
-# FORMULARIO (HTML)
 @router.get("/deportistas/nuevo", response_class=HTMLResponse)
 def form_deportista(request: Request):
-    return templates.TemplateResponse(
-        "crear_deportista.html",
-        {"request": request},
-    )
+    return templates.TemplateResponse("crear_deportista.html", {"request": request})
 
-
-# CREAR (POST HTML)
 @router.post("/deportistas/nuevo")
 def crear_deportista_web(
     nombre: str = Form(...),
@@ -38,12 +44,7 @@ def crear_deportista_web(
     disciplina: str = Form(...),
     session: Session = Depends(get_session),
 ):
-    nuevo = Deportista(
-        nombre=nombre,
-        edad=edad,
-        disciplina=disciplina,
-        estado=True,
-    )
+    nuevo = Deportista(nombre=nombre, edad=edad, disciplina=disciplina, estado=True)
     session.add(nuevo)
     session.commit()
     return RedirectResponse(url="/deportistas", status_code=303)
