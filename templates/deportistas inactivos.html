@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Deportistas inactivos{% endblock %}
+
+{% block content %}
+
+<h1 class="title">Deportistas inactivos</h1>
+
+<a href="/deportistas" class="button is-light mb-3">Volver a activos</a>
+
+{% if deportistas and deportistas|length > 0 %}
+<table class="table is-fullwidth is-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Edad</th>
+      <th>Disciplina</th>
+      <th style="width: 150px;">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for d in deportistas %}
+    <tr>
+      <td>{{ d.id }}</td>
+      <td>{{ d.nombre }}</td>
+      <td>{{ d.edad }}</td>
+      <td>{{ d.disciplina }}</td>
+      <td>
+        <form action="/deportistas/{{ d.id }}/recuperar" method="post" style="display:inline;">
+          <button type="submit" class="button is-small is-success">
+            Recuperar
+          </button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No hay deportistas inactivos.</p>
+{% endif %}
+
+{% endblock %}
