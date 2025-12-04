@@ -1,30 +1,42 @@
 {% extends "base.html" %}
-{% block title %}Entrenadores{% endblock %}
+{% block title %}Nuevo Entrenador{% endblock %}
 
 {% block content %}
-<h1 class="title">Lista de Entrenadores</h1>
 
-<a href="/entrenadores/nuevo" class="button is-primary mb-4">Nuevo Entrenador</a>
+<h1 class="title">Registrar entrenador</h1>
+<p class="subtitle">Ingresa los datos del entrenador.</p>
 
-<table class="table is-fullwidth is-striped">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Especialidad</th>
-            <th>Experiencia (años)</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for e in entrenadores %}
-        <tr>
-            <td>{{ e.id }}</td>
-            <td>{{ e.nombre }}</td>
-            <td>{{ e.especialidad }}</td>
-            <td>{{ e.experiencia }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<form method="post" action="/entrenadores/nuevo" class="box">
+
+  <div class="field">
+    <label class="label">Nombre</label>
+    <div class="control">
+      <input class="input" type="text" name="nombre" placeholder="Nombre completo" required>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Especialidad</label>
+    <div class="control">
+      <input class="input" type="text" name="especialidad" placeholder="Ej: fuerza, resistencia..." required>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Años de experiencia</label>
+    <div class="control">
+      <input class="input" type="number" name="experiencia" min="0" placeholder="Ej: 3" required>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="control">
+      <button class="button is-primary">Guardar entrenador</button>
+    </div>
+  </div>
+
+</form>
 
 {% endblock %}
+
+

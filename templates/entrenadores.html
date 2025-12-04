@@ -2,29 +2,31 @@
 {% block title %}Entrenadores{% endblock %}
 
 {% block content %}
+
 <h1 class="title">Lista de Entrenadores</h1>
 
 <a href="/entrenadores/nuevo" class="button is-primary mb-4">Nuevo Entrenador</a>
 
 <table class="table is-fullwidth is-striped">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Especialidad</th>
-            <th>Experiencia (años)</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for e in entrenadores %}
-        <tr>
-            <td>{{ e.id }}</td>
-            <td>{{ e.nombre }}</td>
-            <td>{{ e.especialidad }}</td>
-            <td>{{ e.experiencia }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Especialidad</th>
+      <th>Experiencia (años)</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for e in entrenadores %}
+    <tr>
+      <td>{{ e.id }}</td>
+      <td>{{ e.nombre }}</td>
+      <td>{{ e.especialidad }}</td>
+      <td>{{ e.experiencia }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
 </table>
 
 {% endblock %}
+
