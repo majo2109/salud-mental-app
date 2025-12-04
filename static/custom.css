@@ -1,145 +1,315 @@
-/* ====== ESTILO GENERAL ====== */
-
-html, body {
-    height: 100%;
+/* =========================
+   VARIABLES Y BASE GLOBAL
+   ========================= */
+:root {
+    --page-bg: #e9f3ff;
+    --card-bg: #ffffff;
+    --card-border: #c7ddff;
+    --accent: #3b82f6;
+    --accent-soft: #bfdbfe;
+    --accent-strong: #2563eb;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --radius-lg: 18px;
+    --shadow-soft: 0 20px 40px rgba(15, 23, 42, 0.15);
+    --transition-fast: 0.22s ease;
 }
 
+/* Fondo general del sitio */
 body {
-    background: #f5f7fb;
+    background: radial-gradient(circle at top, #dbeafe 0, #e9f3ff 40%, #e5ecff 100%);
+    color: var(--text-main);
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-/* Contenedor principal */
-.section .container {
-    max-width: 1100px;
+/* Ajuste del contenedor que pone FastAPI/Bulma */
+.section {
+    padding-top: 3rem;
 }
 
-/* ====== NAVBAR ====== */
+/* =========================
+   NAVBAR
+   ========================= */
 
-.navbar {
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+.navbar.is-dark {
+    background: linear-gradient(90deg, #1d4ed8, #2563eb, #1d4ed8);
+    border-bottom: 1px solid rgba(191, 219, 254, 0.7);
+    box-shadow: 0 12px 28px rgba(30, 64, 175, 0.4);
 }
 
 .navbar-item {
     font-weight: 500;
+    letter-spacing: 0.02em;
+    color: #e5edff;
 }
 
 .navbar-item:hover {
-    background: rgba(255, 255, 255, 0.08) !important;
+    background: rgba(191, 219, 254, 0.15);
 }
 
-/* ====== TITULOS ====== */
-
-.title {
-    color: #222;
-    margin-bottom: 0.5rem;
+/* Botón API Docs */
+.navbar .button.is-info.is-light.is-small {
+    border-radius: 999px;
+    border: 1px solid rgba(59, 130, 246, 0.7);
+    box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.15);
+    background: #eff6ff;
+    color: #1d4ed8;
+    transition: var(--transition-fast);
 }
 
-.subtitle {
-    color: #555;
-    margin-bottom: 1.5rem;
+.navbar .button.is-info.is-light.is-small:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px rgba(37, 99, 235, 0.45);
 }
 
-/* ====== TABLAS ====== */
+/* =========================
+   LANDING (INICIO)
+   ========================= */
 
-.table {
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 1px 4px rgba(15, 23, 42, 0.12);
+.landing-container {
+    max-width: 960px;
+    margin: 3rem auto 0 auto;
+    padding: 2.5rem 2.2rem;
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.98);
+    border: 1px solid var(--card-border);
+    box-shadow: var(--shadow-soft);
 }
 
-.table th {
-    background: #f0f2f8;
-    color: #374151;
-    font-weight: 600;
-    font-size: 0.9rem;
-}
-
-.table td, .table th {
-    vertical-align: middle !important;
-}
-
-/* zebra ya la da Bulma, pero ajustamos */
-.table tr:hover {
-    background: #f9fafb;
-}
-
-/* ====== FORMULARIOS ====== */
-
-.box {
-    border-radius: 12px;
-    box-shadow: 0 1px 6px rgba(15, 23, 42, 0.15);
-}
-
-.label {
-    font-weight: 600;
-    color: #374151;
-}
-
-.input, .textarea, .select select {
-    border-radius: 8px;
-    border-color: #d1d5db;
-    box-shadow: none;
-}
-
-.input:focus, .textarea:focus, .select select:focus {
-    border-color: #6366f1;
-    box-shadow: 0 0 0 0.1rem rgba(99, 102, 241, 0.25);
-}
-
-/* Botones */
-
-.button.is-primary {
-    background: #2563eb;
-    border-color: #2563eb;
-}
-
-.button.is-primary:hover {
-    background: #1d4ed8;
-    border-color: #1d4ed8;
-}
-
-.button.is-success {
-    background: #16a34a;
-    border-color: #16a34a;
-}
-
-.button.is-success:hover {
-    background: #15803d;
-    border-color: #15803d;
-}
-
-/* ====== DASHBOARD CARDS ====== */
-
-.box.has-text-centered {
-    border-top: 4px solid #6366f1;
-}
-
-.box.has-text-centered .heading {
-    text-transform: uppercase;
+/* cabecera */
+.landing-header-kicker {
     font-size: 0.8rem;
-    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--text-muted);
+    margin-bottom: 0.6rem;
 }
 
-.box.has-text-centered .title {
-    font-size: 2rem;
-    margin-top: 0.3rem;
+.landing-title {
+    font-size: 2.4rem;
+    font-weight: 800;
+    margin-bottom: 0.4rem;
 }
 
-/* ====== UTILIDADES ====== */
+.landing-subtitle {
+    font-size: 1rem;
+    color: var(--text-muted);
+    max-width: 620px;
+}
 
-.mt-4 {
+/* layout principal: texto+botones a la izquierda, formulario a la derecha */
+.landing-main {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr);
+    gap: 2.2rem;
+}
+
+/* botones de navegación */
+.landing-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
     margin-top: 1.5rem;
 }
 
-.mb-4 {
-    margin-bottom: 1.5rem;
+.landing-btn {
+    padding: 0.7rem 1.4rem;
+    border-radius: 999px;
+    border: 1px solid var(--accent-soft);
+    background: #eff6ff;
+    color: #1e3a8a;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    transition: var(--transition-fast);
 }
 
-.rounded-hero {
-    border-radius: 12px;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
-    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.12);
+.landing-btn:hover {
+    background: #dbeafe;
+    border-color: var(--accent);
+    transform: translateY(-1px);
+}
+
+.landing-btn-primary {
+    background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+    color: #f9fafb;
+    border-color: transparent;
+    box-shadow: 0 12px 26px rgba(37, 99, 235, 0.45);
+}
+
+.landing-btn-primary:hover {
+    filter: brightness(1.05);
+}
+
+/* =========================
+   FORMULARIO DE RECOMENDACIONES
+   ========================= */
+
+.reco-card {
+    background: #f9fbff;
+    border-radius: 16px;
+    border: 1px solid var(--card-border);
+    padding: 1.5rem 1.4rem;
+    box-shadow: 0 12px 24px rgba(148, 163, 184, 0.25);
+}
+
+.reco-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    color: #1e3a8a;
+}
+
+.reco-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+/* inputs del formulario */
+.reco-field {
+    margin-bottom: 0.8rem;
+}
+
+.reco-label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    color: #1f2937;
+}
+
+.reco-input,
+.reco-textarea {
+    width: 100%;
+    padding: 0.6rem 0.7rem;
+    border-radius: 10px;
+    border: 1px solid var(--card-border);
+    background: #ffffff;
+    font-size: 0.9rem;
+    color: var(--text-main);
+    transition: var(--transition-fast);
+    resize: vertical;
+    min-height: 38px;
+}
+
+.reco-textarea {
+    min-height: 90px;
+}
+
+.reco-input:focus,
+.reco-textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+}
+
+/* botón del formulario */
+.reco-submit {
+    margin-top: 0.3rem;
+    width: 100%;
+    padding: 0.65rem 1rem;
+    border-radius: 999px;
+    border: none;
+    background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+    color: #f9fafb;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    box-shadow: 0 10px 22px rgba(37, 99, 235, 0.45);
+}
+
+.reco-submit:hover {
+    filter: brightness(1.06);
+    transform: translateY(-1px);
+}
+
+/* =========================
+   TABLAS, CAJAS Y FORMULARIOS (resto de páginas)
+   ========================= */
+
+.table.is-fullwidth {
+    background: var(--card-bg);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+}
+
+.table thead {
+    background: #e0edff;
+}
+
+.table th {
+    color: #1e3a8a;
+    font-weight: 600;
+}
+
+.table td {
+    color: #111827;
+}
+
+.box {
+    background: var(--card-bg);
+    border-radius: 16px;
+    border: 1px solid var(--card-border);
+    box-shadow: var(--shadow-soft);
+    color: var(--text-main);
+}
+
+/* inputs Bulma generales */
+.input,
+.textarea,
+.select select {
+    background: #ffffff;
+    border-radius: 10px;
+    border: 1px solid var(--card-border);
+    color: var(--text-main);
+}
+
+.input:focus,
+.textarea:focus,
+.select select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+}
+
+/* botones Bulma */
+.button.is-primary {
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+    border: none;
+    box-shadow: 0 10px 22px rgba(37, 99, 235, 0.45);
+    transition: var(--transition-fast);
+}
+
+.button.is-primary:hover {
+    filter: brightness(1.05);
+    transform: translateY(-1px);
+}
+
+.button.is-light {
+    border-radius: 999px;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 900px) {
+    .landing-main {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .landing-container {
+        margin-top: 2rem;
+        padding: 2rem 1.5rem;
+    }
+
+    .landing-title {
+        font-size: 2rem;
+    }
 }
