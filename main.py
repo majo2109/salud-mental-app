@@ -25,8 +25,9 @@ async def crear_registro(
     estado_animo: str = Form(...),
     comentario: str = Form("")
 ):
-
+    
     return RedirectResponse(url="/", status_code=303)
+
 
 
 @app.post("/feedback")
@@ -38,6 +39,8 @@ async def feedback(
     
     return RedirectResponse(url="/", status_code=303)
 
+
+
 @app.get("/login", response_class=HTMLResponse)
 async def login_get(request: Request):
     return templates.TemplateResponse(
@@ -45,15 +48,19 @@ async def login_get(request: Request):
         {"request": request}
     )
 
+
 @app.post("/login")
 async def login_post(
     request: Request,
     email: str = Form(...),
     password: str = Form(...)
 ):
+    
     response = RedirectResponse(url="/dashboard", status_code=303)
     response.set_cookie(key="user_id", value="1")
+
     return response
+
 
 @app.get("/registro", response_class=HTMLResponse)
 async def registro_get(request: Request):
@@ -62,20 +69,28 @@ async def registro_get(request: Request):
         {"request": request}
     )
 
+
 @app.post("/registro")
 async def registro_post(
     request: Request,
     name: str = Form(...),
     email: str = Form(...),
-    password: str = Form(...)
+    password: str = Form(...),
+    rol: str = Form(...),         
 ):
+
     return RedirectResponse(url="/login", status_code=303)
+
 
 @app.get("/dashboard", response_class=HTMLResponse)
 async def dashboard(request: Request):
-    registros = []  # Por ahora vacío
+    registros = []
+
     return templates.TemplateResponse(
         "dashboard.html",
-        {"request": request, "registros": registros}
+        {
+            "request": request,
+            "registros": registros
+        }
     )
 
