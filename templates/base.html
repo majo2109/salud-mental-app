@@ -1,43 +1,38 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}{% endblock %}</title>
-
-    <link rel="stylesheet" href="/static/custom.css">
+    <title>{% block title %}Bienestar Deportivo{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/custom.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-
 </head>
+
 <body>
 
+<!-- NAVBAR ÚNICA -->
 <nav class="navbar is-dark">
   <div class="navbar-menu is-active">
+
     <div class="navbar-start">
       <a href="/" class="navbar-item">Inicio</a>
-      <a href="/deportistas" class="navbar-item">Deportistas</a>
-      <a href="/entrenadores" class="navbar-item">Entrenadores</a>
-      <a href="/evaluaciones" class="navbar-item">Evaluaciones</a>
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link text-light" href="https://proyecto-integrador-3nt8.onrender.com/docs" id="apiDocsLink">📄 API Docs</a>
-                </li>
-            </ul>
-    </div>
-  </div>
-</nav>
-<nav class="navbar is-dark">
-  <div class="navbar-menu is-active">
-    <div class="navbar-start">
-      <a href="/" class="navbar-item">Inicio</a>
-      <a href="/dashboard" class="navbar-item">Dashboard</a>  <!-- 👈 NUEVO -->
+      <a href="/dashboard" class="navbar-item">Dashboard</a>
       <a href="/deportistas" class="navbar-item">Deportistas</a>
       <a href="/entrenadores" class="navbar-item">Entrenadores</a>
       <a href="/evaluaciones" class="navbar-item">Evaluaciones</a>
     </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <a href="/docs" class="button is-info is-light is-small">
+          API Docs
+        </a>
+      </div>
+    </div>
+
   </div>
 </nav>
 
+<!-- CONTENIDO -->
 <section class="section">
   <div class="container">
     {% block content %}
