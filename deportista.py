@@ -40,7 +40,4 @@ def lista_deportistas_inactivos(request: Request, session: Session = Depends(get
     )
 
 
-# ============================================================
-# FORMULARIO PARA CREAR DEPORTISTA
-# ============================================================
 
