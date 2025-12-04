@@ -452,16 +452,16 @@ def recuperar_evaluacion_web(
     return RedirectResponse(url="/evaluaciones/inactivas", status_code=303)
 
 @router.get("/deportistas/{deportista_id}/editar", response_class=HTMLResponse)
-def form_editar_deportista(
+def form_editar_deportistas(
     deportista_id: int,
     request: Request,
     session: Session = Depends(get_session),
 ):
-    deportista = session.get(Deportista, deportista_id)
+    deportista = session.get(Deportistas, deportista_id)
     if not deportista:
         raise HTTPException(status_code=404, detail="Deportista no encontrado")
 
     return templates.TemplateResponse(
-        "editar_deportista.html",
-        {"request": request, "deportista": deportista},
+        "editar_deportistas.html",
+        {"request": request, "deportistas": deportista},
     )
