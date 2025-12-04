@@ -2,25 +2,51 @@
 {% block title %}Deportistas{% endblock %}
 
 {% block content %}
-<h1 class="title">Lista de Deportistas</h1>
 
-<a href="/deportistas/nuevo" class="button is-primary">Nuevo Deportista</a>
+<h1 class="title">Deportistas registrados</h1>
 
-<table class="table is-striped is-fullwidth mt-4">
-    <thead>
-        <tr>
-            <th>ID</th><th>Nombre</th><th>Edad</th><th>Disciplina</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for d in deportistas %}
-        <tr>
-            <td>{{ d.id }}</td>
-            <td>{{ d.nombre }}</td>
-            <td>{{ d.edad }}</td>
-            <td>{{ d.disciplina }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
+<div class="mb-3">
+  <a href="/deportistas/nuevo" class="button is-primary">Nuevo deportista</a>
+  <a href="/deportistas/inactivos" class="button is-light">Ver inactivos</a>
+</div>
+
+{% if deportistas and deportistas|length > 0 %}
+<table class="table is-fullwidth is-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Edad</th>
+      <th>Disciplina</th>
+      <th style="width: 180px;">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for d in deportistas %}
+    <tr>
+      <td>{{ d.id }}</td>
+      <td>{{ d.nombre }}</td>
+      <td>{{ d.edad }}</td>
+      <td>{{ d.disciplina }}</td>
+      <td>
+        <a href="/deportistas/{{ d.id }}/editar" class="button is-small is-info">
+          Editar
+        </a>
+
+        <form action="/deportistas/{{ d.id }}/eliminar" method="post" style="display:inline;">
+          <button type="submit" class="button is-small is-danger"
+                  onclick="return confirm('¿Seguro que deseas desactivar este deportista?');">
+            Eliminar
+          </button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
 </table>
+{% else %}
+<p>No hay deportistas registrados todavía.</p>
+{% endif %}
+
 {% endblock %}
+
