@@ -1,23 +1,27 @@
 {% extends "base.html" %}
+
 {% block title %}Inicio{% endblock %}
 
 {% block content %}
+
 <section class="section">
     <div class="container">
+
         <h1 class="title">Bienestar Deportivo</h1>
         <p class="subtitle">
             Gestiona deportistas, entrenadores y evaluaciones emocionales de forma sencilla.
         </p>
 
-        <div class="buttons">
+        <div class="buttons mt-5">
             <a href="/deportistas" class="button is-link is-light">Ver Deportistas</a>
             <a href="/entrenadores" class="button is-link is-light">Ver Entrenadores</a>
             <a href="/evaluaciones" class="button is-link is-light">Ver Evaluaciones</a>
-            <a href="/dashboard" class="button is-primary is-light">Ver Dashboard</a>  <!-- 👈 NUEVO -->
+            <a href="/dashboard" class="button is-primary is-light">Ver Dashboard</a>
         </div>
+
     </div>
 </section>
-{% endblock %}
 
+{% endblock %}
 
 
