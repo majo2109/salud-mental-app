@@ -1,34 +1,33 @@
 {% extends "base.html" %}
-{% block title %}Dashboard por entrenador{% endblock %}
+{% block title %}Panel de Entrenadores{% endblock %}
 
 {% block content %}
 
-<h1 class="title">Dashboard por Entrenador</h1>
-<p class="subtitle">Resumen básico de evaluaciones realizadas por entrenador.</p>
+<h1 class="title">Panel de Entrenadores</h1>
+<p class="subtitle">Listado rápido de los entrenadores activos.</p>
 
-{% if resumen and resumen|length > 0 %}
-<table class="table is-fullwidth is-striped custom-table">
+<table class="table is-fullwidth is-striped">
   <thead>
     <tr>
       <th>ID</th>
       <th>Nombre</th>
       <th>Especialidad</th>
-      <th>Total de evaluaciones</th>
+      <th>Experiencia (años)</th>
     </tr>
   </thead>
   <tbody>
-    {% for e in resumen %}
+    {% for e in entrenadores %}
     <tr>
       <td>{{ e.id }}</td>
       <td>{{ e.nombre }}</td>
       <td>{{ e.especialidad }}</td>
-      <td>{{ e.total_evaluaciones }}</td>
+      <td>{{ e.experiencia }}</td>
     </tr>
     {% endfor %}
   </tbody>
 </table>
-{% else %}
-<p>No hay entrenadores registrados o sin evaluaciones.</p>
-{% endif %}
+
+<a href="/entrenadores" class="button is-link is-light">Ir a gestión de entrenadores</a>
 
 {% endblock %}
+
