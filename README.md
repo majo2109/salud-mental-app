@@ -1,10 +1,9 @@
-# 🧠 Proyecto Integrador – App de Bienestar para Deportistas y Entrenadores
+ App de Bienestar para Deportistas y Entrenadores
 
 Aplicación web desarrollada con **FastAPI**, **Supabase** y **Render**, diseñada para que **deportistas** y **entrenadores** puedan registrar su estado de ánimo, dejar comentarios de su día y enviar sugerencias al sistema.  
 
 ---
-
-## 🎯 Objetivo del Proyecto
+ Objetivo 
 
 Crear una plataforma simple, funcional y desplegada en la nube que permita:
 
@@ -12,13 +11,13 @@ Crear una plataforma simple, funcional y desplegada en la nube que permita:
 - Guardar comentarios o reflexiones diarias.
 - Permitir feedback sobre la aplicación.
 - Diferenciar usuarios según su **rol**:
-  - 👤 Deportista  
-  - 🧑‍🏫 Entrenador
+  -  Deportista  
+  - Entrenador
 - Mostrar un panel de historial (Dashboard).
 
 ---
 
-## 🛠️ Tecnologías Utilizadas
+
 
 | Componente       | Tecnología |
 |------------------|-----------|
@@ -34,7 +33,7 @@ Crear una plataforma simple, funcional y desplegada en la nube que permita:
 
 ---
 
-## 🧪 Requisitos Previos
+ Requisitos 
 
 - Python 3.10+
 - Cuenta de Supabase
@@ -43,48 +42,7 @@ Crear una plataforma simple, funcional y desplegada en la nube que permita:
 
 ---
 
-## 📥 Instalación
 
-Clonar el repositorio:
-
-```bash
-git clone https://github.com/TU_USUARIO/salud-mental-app.git
-cd salud-mental-app
-
-##Crear y activar entorno virtual:
-
-python -m venv venv
-source venv/bin/activate     # Mac/Linux
-venv\Scripts\activate        # Windows
-
-##instalar dependecias:
-pip install -r requirements.txt
-
-##Ejecutar Localmente:
-
-uvicorn main:app --reload
-
-
-##Abrir en el navegador:
-
-http://127.0.0.1:8000/
-
-
-👥 Roles: Deportista y Entrenador
-
-Durante el registro el usuario debe elegir:
-
-Deportista
-
-Entrenador
-
-Esto permite:
-
-Filtrar comportamiento en el Dashboard
-
-Crear vistas personalizadas en el futuro
-
-Registrar tipos de usuarios distintos
 
 😋AUTOR:
 
