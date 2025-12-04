@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Evaluaciones{% endblock %}
+
+{% block content %}
+
+<h1 class="title">Evaluaciones Emocionales</h1>
+
+<a href="/evaluaciones/nueva" class="button is-primary mb-4">Nueva Evaluación</a>
+
+<table class="table is-fullwidth is-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Fecha</th>
+            <th>Deportista</th>
+            <th>Entrenador</th>
+            <th>Estado emocional</th>
+            <th>Rendimiento</th>
+            <th>Comentarios</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ev in evaluaciones %}
+        <tr>
+            <td>{{ ev.id }}</td>
+            <td>{{ ev.fecha }}</td>
+            <td>{{ ev.deportista_id }}</td>
+            <td>{{ ev.entrenador_id }}</td>
+            <td>{{ ev.estado_emocional }}</td>
+            <td>{{ ev.rendimiento }}</td>
+            <td>{{ ev.comentarios }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

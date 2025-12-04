@@ -1,29 +1,28 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlmodel import Session, select
 from typing import List
+from sqlalchemy.exc import IntegrityError
 
 from models import Evaluacion
 from db import get_session
 
-router = APIRouter(prefix="/evaluaciones", tags=["Evaluaciones"])
+router = APIRouter(prefix="/evaluaciones-api", tags=["API Evaluaciones"])
 
 
 @router.post("/", response_model=Evaluacion)
-def crear_evaluacion(
-    evaluacion: Evaluacion,
-    session: Session = Depends(get_session)
-):
-    session.add(evaluacion)
+def crear_evaluacion(evaluacion: Evaluacion, session: Session = Depends(get_session)):
     try:
+        session.add(evaluacion)
         session.commit()
-    except Exception:
+        session.refresh(evaluacion)
+        return evaluacion
+    except IntegrityError:
         session.rollback()
         raise HTTPException(
             status_code=400,
-            detail="Error al crear evaluación. Revisa deportista_id y entrenador_id."
+            detail="IDs inválidos: deportista_id o entrenador_id no existen",
         )
-    session.refresh(evaluacion)
-    return evaluacion
+
 
 
 @router.get("/", response_model=List[Evaluacion])
@@ -34,8 +33,7 @@ def listar_evaluaciones(session: Session = Depends(get_session)):
 
 @router.get("/{evaluacion_id}", response_model=Evaluacion)
 def obtener_evaluacion(
-    evaluacion_id: int,
-    session: Session = Depends(get_session)
+    evaluacion_id: int, session: Session = Depends(get_session)
 ):
     evaluacion = session.get(Evaluacion, evaluacion_id)
     if not evaluacion or not evaluacion.estado:
@@ -47,7 +45,7 @@ def obtener_evaluacion(
 def actualizar_evaluacion(
     evaluacion_id: int,
     datos: Evaluacion,
-    session: Session = Depends(get_session)
+    session: Session = Depends(get_session),
 ):
     evaluacion = session.get(Evaluacion, evaluacion_id)
     if not evaluacion or not evaluacion.estado:
@@ -64,20 +62,20 @@ def actualizar_evaluacion(
     try:
         session.add(evaluacion)
         session.commit()
-    except Exception:
+        session.refresh(evaluacion)
+        return evaluacion
+    except IntegrityError:
         session.rollback()
         raise HTTPException(
             status_code=400,
-            detail="Error al actualizar evaluación. Revisa deportista_id y entrenador_id."
+            detail="IDs inválidos: deportista_id o entrenador_id no existen",
         )
-    session.refresh(evaluacion)
-    return evaluacion
+
 
 
 @router.delete("/{evaluacion_id}")
 def eliminar_evaluacion(
-    evaluacion_id: int,
-    session: Session = Depends(get_session)
+    evaluacion_id: int, session: Session = Depends(get_session)
 ):
     evaluacion = session.get(Evaluacion, evaluacion_id)
     if not evaluacion or not evaluacion.estado:

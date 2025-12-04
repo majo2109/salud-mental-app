@@ -11,6 +11,7 @@ class Deportista(SQLModel, table=True):
 
     evaluaciones: List["Evaluacion"] = Relationship(back_populates="deportista")
 
+
 class Entrenador(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     nombre: str
@@ -19,6 +20,7 @@ class Entrenador(SQLModel, table=True):
     estado: bool = Field(default=True)
 
     evaluaciones: List["Evaluacion"] = Relationship(back_populates="entrenador")
+
 
 class Evaluacion(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)

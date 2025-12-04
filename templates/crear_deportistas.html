@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Nuevo Deportista{% endblock %}
+
+{% block content %}
+<h1 class="title">Registrar Deportista</h1>
+
+<form method="post" class="box">
+    <div class="field">
+        <label class="label">Nombre</label>
+        <input class="input" type="text" name="nombre">
+    </div>
+
+    <div class="field">
+        <label class="label">Edad</label>
+        <input class="input" type="number" name="edad">
+    </div>
+
+    <div class="field">
+        <label class="label">Disciplina</label>
+        <input class="input" type="text" name="disciplina">
+    </div>
+
+    <button class="button is-success">Guardar</button>
+</form>
+
+{% endblock %}

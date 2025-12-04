@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Deportistas{% endblock %}
+
+{% block content %}
+<h1 class="title">Lista de Deportistas</h1>
+
+<a href="/deportistas/nuevo" class="button is-primary">Nuevo Deportista</a>
+
+<table class="table is-striped is-fullwidth mt-4">
+    <thead>
+        <tr>
+            <th>ID</th><th>Nombre</th><th>Edad</th><th>Disciplina</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for d in deportistas %}
+        <tr>
+            <td>{{ d.id }}</td>
+            <td>{{ d.nombre }}</td>
+            <td>{{ d.edad }}</td>
+            <td>{{ d.disciplina }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
