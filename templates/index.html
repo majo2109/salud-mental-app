@@ -1,26 +1,78 @@
 {% extends "base.html" %}
-
 {% block title %}Inicio{% endblock %}
 
 {% block content %}
 
-<section class="section">
-    <div class="container">
+<div class="landing-container">
 
-        <h1 class="title">Bienestar Deportivo</h1>
-        <p class="subtitle">
-            Gestiona deportistas, entrenadores y evaluaciones emocionales de forma sencilla.
+    <!-- Cabecera de texto -->
+    <div class="landing-header">
+        <div class="landing-header-kicker">Sistema de bienestar deportivo</div>
+        <h1 class="landing-title">Bienestar Deportivo</h1>
+        <p class="landing-subtitle">
+            Gestiona deportistas, entrenadores y evaluaciones emocionales de forma sencilla,
+            y recibe sugerencias para seguir mejorando la experiencia.
         </p>
+    </div>
 
-        <div class="buttons mt-5">
-            <a href="/deportistas" class="button is-link is-light">Ver Deportistas</a>
-            <a href="/entrenadores" class="button is-link is-light">Ver Entrenadores</a>
-            <a href="/evaluaciones" class="button is-link is-light">Ver Evaluaciones</a>
-            <a href="/dashboard" class="button is-primary is-light">Ver Dashboard</a>
+    <!-- Contenido principal: botones + formulario -->
+    <div class="landing-main">
+
+        <!-- Botones de navegación -->
+        <div>
+            <div class="landing-buttons">
+                <a href="/deportistas"  class="landing-btn">Ver Deportistas</a>
+                <a href="/entrenadores" class="landing-btn">Ver Entrenadores</a>
+                <a href="/evaluaciones" class="landing-btn">Ver Evaluaciones</a>
+                <a href="/dashboard"    class="landing-btn landing-btn-primary">
+                    Ver Dashboard
+                </a>
+            </div>
+        </div>
+
+        <!-- Formulario de recomendaciones -->
+        <div class="reco-card">
+            <h2 class="reco-title">¿Alguna recomendación?</h2>
+            <p class="reco-subtitle">
+                Cuéntanos cómo podríamos mejorar el seguimiento del bienestar deportivo.
+            </p>
+
+            <!--
+              IMPORTANTE:
+              Si todavía no tienes el endpoint /recomendaciones,
+              puedes dejar action="#" para que el formulario sea solo visual.
+            -->
+            <form method="post" action="/recomendaciones">
+                <div class="reco-field">
+                    <label class="reco-label" for="nombre">Nombre (opcional)</label>
+                    <input
+                        id="nombre"
+                        name="nombre"
+                        type="text"
+                        class="reco-input"
+                        placeholder="Tu nombre o seudónimo"
+                    >
+                </div>
+
+                <div class="reco-field">
+                    <label class="reco-label" for="mensaje">Recomendación</label>
+                    <textarea
+                        id="mensaje"
+                        name="mensaje"
+                        class="reco-textarea"
+                        placeholder="Ej: agregar más gráficos, registrar dolor muscular, mejorar el diseño, etc."
+                        required
+                    ></textarea>
+                </div>
+
+                <button type="submit" class="reco-submit">
+                    Enviar recomendación
+                </button>
+            </form>
         </div>
 
     </div>
-</section>
+</div>
 
 {% endblock %}
 
