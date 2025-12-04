@@ -1,34 +1,32 @@
 {% extends "base.html" %}
-{% block title %}Dashboard por deportista{% endblock %}
+{% block title %}Panel de Deportistas{% endblock %}
 
 {% block content %}
 
-<h1 class="title">Dashboard por Deportista</h1>
-<p class="subtitle">Resumen básico de evaluaciones por deportista.</p>
+<h1 class="title">Panel de Deportistas</h1>
+<p class="subtitle">Listado rápido de los deportistas activos.</p>
 
-{% if resumen and resumen|length > 0 %}
-<table class="table is-fullwidth is-striped custom-table">
+<table class="table is-fullwidth is-striped">
   <thead>
     <tr>
       <th>ID</th>
       <th>Nombre</th>
+      <th>Edad</th>
       <th>Disciplina</th>
-      <th>Total de evaluaciones</th>
     </tr>
   </thead>
   <tbody>
-    {% for d in resumen %}
+    {% for d in deportistas %}
     <tr>
       <td>{{ d.id }}</td>
       <td>{{ d.nombre }}</td>
+      <td>{{ d.edad }}</td>
       <td>{{ d.disciplina }}</td>
-      <td>{{ d.total_evaluaciones }}</td>
     </tr>
     {% endfor %}
   </tbody>
 </table>
-{% else %}
-<p>No hay deportistas registrados o sin evaluaciones.</p>
-{% endif %}
+
+<a href="/deportistas" class="button is-link is-light">Ir a gestión de deportistas</a>
 
 {% endblock %}
