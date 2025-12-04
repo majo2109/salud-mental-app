@@ -36,6 +36,12 @@
   </div>
 
 </form>
+<form method="post" action="/entrenadores/nuevo" class="box">
+  <input class="input" type="text" name="nombre" required>
+  <input class="input" type="text" name="especialidad" required>
+  <input class="input" type="number" name="experiencia" min="0" required>
+  <button class="button is-primary">Guardar entrenador</button>
+</form>
 
 {% endblock %}
 
