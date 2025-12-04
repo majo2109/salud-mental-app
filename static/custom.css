@@ -1,6 +1,7 @@
-/* =========================
-   VARIABLES Y BASE GLOBAL
-   ========================= */
+/* ============================================================
+   VARIABLES GLOBALES (PALETA AZUL CLARO)
+   ============================================================ */
+
 :root {
     --page-bg: #e9f3ff;
     --card-bg: #ffffff;
@@ -8,235 +9,79 @@
     --accent: #3b82f6;
     --accent-soft: #bfdbfe;
     --accent-strong: #2563eb;
+
     --text-main: #0f172a;
     --text-muted: #64748b;
-    --radius-lg: 18px;
-    --shadow-soft: 0 20px 40px rgba(15, 23, 42, 0.15);
+
+    --radius: 14px;
+    --radius-lg: 22px;
+
+    --shadow-soft: 0 20px 40px rgba(30, 64, 175, 0.15);
+    --shadow-card: 0 14px 32px rgba(148, 163, 184, 0.2);
+
     --transition-fast: 0.22s ease;
 }
 
-/* Fondo general del sitio */
+/* ============================================================
+   ESTILOS BASE DEL SITIO
+   ============================================================ */
+
 body {
-    background: radial-gradient(circle at top, #dbeafe 0, #e9f3ff 40%, #e5ecff 100%);
+    background: radial-gradient(circle at top, #dbeafe 0, #e5edff 40%, #f2f6ff 100%);
     color: var(--text-main);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: "Inter", system-ui, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
-/* Ajuste del contenedor que pone FastAPI/Bulma */
 .section {
     padding-top: 3rem;
 }
 
-/* =========================
+/* ============================================================
    NAVBAR
-   ========================= */
+   ============================================================ */
 
 .navbar.is-dark {
-    background: linear-gradient(90deg, #1d4ed8, #2563eb, #1d4ed8);
-    border-bottom: 1px solid rgba(191, 219, 254, 0.7);
-    box-shadow: 0 12px 28px rgba(30, 64, 175, 0.4);
+    background: linear-gradient(90deg, #1e3a8a, #2563eb, #1e3a8a);
+    border-bottom: 1px solid rgba(191, 219, 254, 0.3);
+    box-shadow: 0 10px 24px rgba(30, 58, 138, 0.4);
 }
 
 .navbar-item {
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    color: #e5edff;
+    color: #e0eaff !important;
+    font-weight: 600;
+    letter-spacing: 0.3px;
 }
 
 .navbar-item:hover {
-    background: rgba(191, 219, 254, 0.15);
+    background: rgba(255, 255, 255, 0.1);
 }
 
 /* Botón API Docs */
 .navbar .button.is-info.is-light.is-small {
-    border-radius: 999px;
-    border: 1px solid rgba(59, 130, 246, 0.7);
-    box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.15);
-    background: #eff6ff;
-    color: #1d4ed8;
+    border-radius: 30px;
+    border: 1px solid rgba(191, 219, 254, 0.5);
+    background: #f0f7ff;
+    color: #1e40af;
+    box-shadow: 0 0 0 1px rgba(30, 58, 138, 0.22);
     transition: var(--transition-fast);
 }
 
 .navbar .button.is-info.is-light.is-small:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 10px 22px rgba(37, 99, 235, 0.45);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 22px rgba(37, 99, 235, 0.4);
 }
 
-/* =========================
-   LANDING (INICIO)
-   ========================= */
-
-.landing-container {
-    max-width: 960px;
-    margin: 3rem auto 0 auto;
-    padding: 2.5rem 2.2rem;
-    border-radius: var(--radius-lg);
-    background: rgba(255, 255, 255, 0.98);
-    border: 1px solid var(--card-border);
-    box-shadow: var(--shadow-soft);
-}
-
-/* cabecera */
-.landing-header-kicker {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    color: var(--text-muted);
-    margin-bottom: 0.6rem;
-}
-
-.landing-title {
-    font-size: 2.4rem;
-    font-weight: 800;
-    margin-bottom: 0.4rem;
-}
-
-.landing-subtitle {
-    font-size: 1rem;
-    color: var(--text-muted);
-    max-width: 620px;
-}
-
-/* layout principal: texto+botones a la izquierda, formulario a la derecha */
-.landing-main {
-    margin-top: 2rem;
-    display: grid;
-    grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr);
-    gap: 2.2rem;
-}
-
-/* botones de navegación */
-.landing-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.8rem;
-    margin-top: 1.5rem;
-}
-
-.landing-btn {
-    padding: 0.7rem 1.4rem;
-    border-radius: 999px;
-    border: 1px solid var(--accent-soft);
-    background: #eff6ff;
-    color: #1e3a8a;
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-    transition: var(--transition-fast);
-}
-
-.landing-btn:hover {
-    background: #dbeafe;
-    border-color: var(--accent);
-    transform: translateY(-1px);
-}
-
-.landing-btn-primary {
-    background: linear-gradient(135deg, var(--accent), var(--accent-strong));
-    color: #f9fafb;
-    border-color: transparent;
-    box-shadow: 0 12px 26px rgba(37, 99, 235, 0.45);
-}
-
-.landing-btn-primary:hover {
-    filter: brightness(1.05);
-}
-
-/* =========================
-   FORMULARIO DE RECOMENDACIONES
-   ========================= */
-
-.reco-card {
-    background: #f9fbff;
-    border-radius: 16px;
-    border: 1px solid var(--card-border);
-    padding: 1.5rem 1.4rem;
-    box-shadow: 0 12px 24px rgba(148, 163, 184, 0.25);
-}
-
-.reco-title {
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 0.4rem;
-    color: #1e3a8a;
-}
-
-.reco-subtitle {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    margin-bottom: 1rem;
-}
-
-/* inputs del formulario */
-.reco-field {
-    margin-bottom: 0.8rem;
-}
-
-.reco-label {
-    display: block;
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin-bottom: 0.3rem;
-    color: #1f2937;
-}
-
-.reco-input,
-.reco-textarea {
-    width: 100%;
-    padding: 0.6rem 0.7rem;
-    border-radius: 10px;
-    border: 1px solid var(--card-border);
-    background: #ffffff;
-    font-size: 0.9rem;
-    color: var(--text-main);
-    transition: var(--transition-fast);
-    resize: vertical;
-    min-height: 38px;
-}
-
-.reco-textarea {
-    min-height: 90px;
-}
-
-.reco-input:focus,
-.reco-textarea:focus {
-    outline: none;
-    border-color: var(--accent);
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
-}
-
-/* botón del formulario */
-.reco-submit {
-    margin-top: 0.3rem;
-    width: 100%;
-    padding: 0.65rem 1rem;
-    border-radius: 999px;
-    border: none;
-    background: linear-gradient(135deg, var(--accent), var(--accent-strong));
-    color: #f9fafb;
-    font-size: 0.9rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: var(--transition-fast);
-    box-shadow: 0 10px 22px rgba(37, 99, 235, 0.45);
-}
-
-.reco-submit:hover {
-    filter: brightness(1.06);
-    transform: translateY(-1px);
-}
-
-/* =========================
-   TABLAS, CAJAS Y FORMULARIOS (resto de páginas)
-   ========================= */
+/* ============================================================
+   TABLAS GENERALES
+   ============================================================ */
 
 .table.is-fullwidth {
+    border-radius: var(--radius-lg);
     background: var(--card-bg);
-    border-radius: 14px;
     overflow: hidden;
-    box-shadow: var(--shadow-soft);
+    box-shadow: var(--shadow-card);
 }
 
 .table thead {
@@ -244,72 +89,221 @@ body {
 }
 
 .table th {
-    color: #1e3a8a;
-    font-weight: 600;
+    color: #1e40af;
+    font-weight: 700;
 }
 
 .table td {
-    color: #111827;
+    color: var(--text-main);
 }
+
+/* ============================================================
+   FORMULARIOS EN PÁGINAS CRUD
+   ============================================================ */
 
 .box {
     background: var(--card-bg);
-    border-radius: 16px;
+    border-radius: var(--radius-lg);
     border: 1px solid var(--card-border);
     box-shadow: var(--shadow-soft);
-    color: var(--text-main);
 }
 
-/* inputs Bulma generales */
 .input,
 .textarea,
 .select select {
-    background: #ffffff;
-    border-radius: 10px;
-    border: 1px solid var(--card-border);
-    color: var(--text-main);
+    border-radius: 12px;
+    background: white;
+    border: 1px solid #d1ddff;
+    transition: var(--transition-fast);
 }
 
 .input:focus,
 .textarea:focus,
 .select select:focus {
     border-color: var(--accent);
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, .25);
 }
 
-/* botones Bulma */
+/* Botones Bulma */
 .button.is-primary {
     border-radius: 999px;
-    background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
     border: none;
-    box-shadow: 0 10px 22px rgba(37, 99, 235, 0.45);
+    color: white;
     transition: var(--transition-fast);
+    box-shadow: 0 12px 26px rgba(37, 99, 235, 0.35);
 }
 
 .button.is-primary:hover {
     filter: brightness(1.05);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+}
+
+.button.is-danger,
+.button.is-info {
+    border-radius: 30px;
 }
 
 .button.is-light {
     border-radius: 999px;
 }
 
-/* =========================
-   RESPONSIVE
-   ========================= */
+/* ============================================================
+   HERO — PÁGINA DE INICIO (INDEX)
+   ============================================================ */
 
-@media (max-width: 900px) {
-    .landing-main {
-        grid-template-columns: minmax(0, 1fr);
+.landing-hero {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 3rem;
+    align-items: center;
+
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 3rem;
+
+    background: linear-gradient(145deg, #e3eeff, #f5f9ff);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+}
+
+/* TEXTO PRINCIPAL DEL HERO */
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #1e40af;
+    margin-bottom: 0.4rem;
+}
+
+.hero-subtitle {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    max-width: 550px;
+    margin-bottom: 1.6rem;
+}
+
+/* BOTONES DEL HERO */
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.hero-btn {
+    padding: 0.75rem 1.4rem;
+    background: #f1f7ff;
+    border-radius: 999px;
+    border: 1px solid #c7ddff;
+
+    text-decoration: none;
+    color: #1e3a8a;
+    font-weight: 600;
+
+    box-shadow: 0 6px 16px rgba(30, 64, 175, 0.18);
+    transition: var(--transition-fast);
+}
+
+.hero-btn:hover {
+    transform: translateY(-3px);
+    background: #dbeafe;
+}
+
+.hero-btn-primary {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white !important;
+    border: none;
+    box-shadow: 0 12px 30px rgba(37, 99, 235, 0.45);
+}
+
+/* FORMULARIO DEL HERO (RECOMENDACIONES) */
+
+.hero-form-card {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid #d4e2ff;
+    box-shadow: var(--shadow-card);
+}
+
+.form-title {
+    color: #1e40af;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.form-subtitle {
+    color: var(--text-muted);
+    font-size: .9rem;
+    margin-bottom: 1rem;
+}
+
+.form-field {
+    margin-bottom: 1rem;
+}
+
+.form-label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    color: #1e293b;
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 0.7rem;
+    border-radius: 12px;
+    background: #f8faff;
+    border: 1px solid #ccd8ff;
+    transition: var(--transition-fast);
+    font-size: 0.9rem;
+}
+
+.form-textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, .3);
+}
+
+.form-submit {
+    width: 100%;
+    padding: 0.8rem;
+
+    border-radius: 999px;
+    border: none;
+
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+
+    transition: var(--transition-fast);
+    box-shadow: 0 12px 26px rgba(37, 99, 235, 0.35);
+}
+
+.form-submit:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 950px) {
+    .landing-hero {
+        grid-template-columns: 1fr;
+        padding: 2rem;
     }
 
-    .landing-container {
-        margin-top: 2rem;
-        padding: 2rem 1.5rem;
-    }
-
-    .landing-title {
-        font-size: 2rem;
+    .hero-title {
+        font-size: 2.3rem;
     }
 }
