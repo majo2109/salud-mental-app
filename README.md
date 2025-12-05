@@ -25,7 +25,6 @@ Crear una plataforma simple, funcional y desplegada en la nube que permita:
 | Base de datos    | Supabase (PostgreSQL + API REST) |
 | Frontend         | HTML + Jinja2 + Bulma CSS |
 | Despliegue       | Render |
-| Autenticación    | Cookies simples (próxima mejora: JWT) |
 | Estilos extra    | CSS personalizado |
 
 ---
